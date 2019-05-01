@@ -993,8 +993,11 @@ fn prettify_traceback(backtrace: &Backtrace, whitelist: &Vec<String>, pack: bool
                     let linex = btlines[k].clone();
                     let s = strme(&linex);
                     printme!( k+1, btlines.len() ); // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                    let linex2 = btlines[k + 1].clone();
-                    let s2 = strme(&linex2);
+                    let mut s2 = String::new();
+                    if k+1 < btlines.len() {
+                        let linex2 = btlines[k + 1].clone();
+                        s2 = stringme(&linex2);
+                    }
                     let mut good = true;
                     if whitelist.len() > 0 {
                         good = false;
