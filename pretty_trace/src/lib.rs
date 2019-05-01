@@ -1003,6 +1003,7 @@ fn prettify_traceback(backtrace: &Backtrace, whitelist: &Vec<String>, pack: bool
                             }
                         }
                     }
+                    println!( "s = {}", s ); // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
                     let mut blacklisted = false;
                     if (k-i) % 2 == 0 {
                         for b in blacklist.iter() {
@@ -1042,6 +1043,7 @@ fn prettify_traceback(backtrace: &Backtrace, whitelist: &Vec<String>, pack: bool
             i = j;
         }
     }
+    println!( "contracting" ); // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
     // Contract paths that look like " .../.../src/...".
 
