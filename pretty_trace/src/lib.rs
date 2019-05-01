@@ -958,7 +958,8 @@ fn prettify_traceback(backtrace: &Backtrace, whitelist: &Vec<String>, pack: bool
                 }
             }
 
-            // Delete in certain cases where main occurs.
+            // Delete block if it starts with a useless construct main(...), with no information
+            // following that.
 
             if s.contains(" main (") {
                 if s.after(" main (").contains(")") {
@@ -1000,9 +1001,20 @@ fn prettify_traceback(backtrace: &Backtrace, whitelist: &Vec<String>, pack: bool
                             }
                         }
                     }
-                    if good
+
+                    let mut blacklisted = false;
+                    for b in blacklist.iter() {
+                        if s.contains(b) {
+                            blacklisted = true;
+                        }
+                    }
+
+
+                    if good && !blacklisted
                         && !s2.contains(".rs:0")
                         && ((!s.contains(" - <") && !s.contains("rayon::iter")) || k == i)
+
+
                     {
                         // Add back traceback entry number if needed.  Doesn't work
                         // if 10 or more.
