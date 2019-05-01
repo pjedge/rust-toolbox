@@ -1004,9 +1004,11 @@ fn prettify_traceback(backtrace: &Backtrace, whitelist: &Vec<String>, pack: bool
                         }
                     }
                     let mut blacklisted = false;
-                    for b in blacklist.iter() {
-                        if s.contains(b) {
-                            blacklisted = true;
+                    if (k-i) % 2 == 0 {
+                        for b in blacklist.iter() {
+                            if s.contains(b) {
+                                blacklisted = true;
+                            }
                         }
                     }
                     if good && !blacklisted
