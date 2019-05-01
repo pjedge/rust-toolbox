@@ -901,7 +901,7 @@ fn prettify_traceback(backtrace: &Backtrace, whitelist: &Vec<String>, pack: bool
         "::force_pretty_trace::",
         "::thread::",
         "- rayon",
-        // "rayon::iter",
+        "rayon::iter",
         "rayon_core::",
         "- start_thread",
         "<alloc::",
@@ -933,11 +933,13 @@ fn prettify_traceback(backtrace: &Backtrace, whitelist: &Vec<String>, pack: bool
             let linex = btlines[i].clone();
             let s = strme(&linex);
             let mut junk = false;
+            /*
             for b in blacklist.iter() {
                 if s.contains(b) {
                     junk = true;
                 }
             }
+            */
 
             // If a whitelist is provided, require that at least one of the strings appears in
             // the block.  Otherwise the entire block is deleted.
@@ -1001,20 +1003,15 @@ fn prettify_traceback(backtrace: &Backtrace, whitelist: &Vec<String>, pack: bool
                             }
                         }
                     }
-
                     let mut blacklisted = false;
                     for b in blacklist.iter() {
                         if s.contains(b) {
                             blacklisted = true;
                         }
                     }
-
-
                     if good && !blacklisted
                         && !s2.contains(".rs:0")
                         && ((!s.contains(" - <") && !s.contains("rayon::iter")) || k == i)
-
-
                     {
                         // Add back traceback entry number if needed.  Doesn't work
                         // if 10 or more.
