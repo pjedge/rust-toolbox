@@ -992,6 +992,7 @@ fn prettify_traceback(backtrace: &Backtrace, whitelist: &Vec<String>, pack: bool
                 while k < j {
                     let linex = btlines[k].clone();
                     let s = strme(&linex);
+                    printme!( k+1, btlines.len() ); // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
                     let linex2 = btlines[k + 1].clone();
                     let s2 = strme(&linex2);
                     let mut good = true;
