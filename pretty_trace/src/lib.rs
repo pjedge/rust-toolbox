@@ -901,7 +901,7 @@ fn prettify_traceback(backtrace: &Backtrace, whitelist: &Vec<String>, pack: bool
         "::force_pretty_trace::",
         "::thread::",
         "- rayon",
-        "rayon::iter",
+        // "rayon::iter",
         "rayon_core::",
         "- start_thread",
         "<alloc::",
