@@ -948,6 +948,8 @@ fn force_pretty_trace_fancy(
         // Exit.  One does not need to do anything here.  The exit status will be 101 even
         // though one "falls off the end".  This is an empirical observation.
 
+        std::process::exit(1);
+
     }));
 }
 
